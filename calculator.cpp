@@ -3,7 +3,6 @@ using namespace std;
 
 int main() {
 
-
     int totalCredit = 0;
     int credit = 0;
     int numClass = 0;
@@ -29,14 +28,15 @@ int main() {
     cout << "F                 00-49           0.00" << endl;
     
     cout << "How many classes would you like to use to calculate your gpa?: ";
-    cin >> numClass;
-    
+    if (numClass < 0) {
+        cout << "Please enter a valid number of classes.";
+    } else {
+        cin >> numClass;
+    }
+
     for (int i = 0; i < numClass; i++) {
         cout << "Please enter the letter grade for this class: " << endl;
         cin >> letter;
-        cout << "How many credits is this class worth?";
-        cin >> credit;
-        totalCredit += credit;
 
         if (letter == "A+") {
             grade = 4.33;
@@ -65,11 +65,17 @@ int main() {
         } else if (letter == "F") {
             grade = 0.00;
         } else {
-            cout << "Enter a valid letter grade" << endl;
+            cout << "Please enter a valid letter grade: ";
             cin >> letter;
         }
+        
+        cout << "How many credits is this class worth?: ";
+        cin >> credit;
+        totalCredit += credit;    
         gradePoints = gradePoints + (grade * credit);
+    
     }
+        
         gpa = gradePoints / totalCredit;  
         cout << gpa << endl;
 }
