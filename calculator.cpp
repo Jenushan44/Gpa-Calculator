@@ -38,38 +38,63 @@ int main() {
         cout << "Please enter the letter grade for this class: " << endl;
         cin >> letter;
 
-        if (letter == "A+") {
-            grade = 4.33;
-        } else if (letter == "A") {
-            grade = 4.00;
-        } else if (letter == "A-") {
-            grade = 3.67;
-        } else if (letter == "B+") {
-            grade = 3.33;
-        } else if (letter == "B") {
-            grade = 3.00;
-        } else if (letter == "B-") {
-            grade = 2.67;
-        } else if (letter == "C+") {
-            grade = 2.33;
-        } else if (letter == "C") {
-            grade = 2.00;
-        } else if (letter == "C-") {
-            grade = 1.67;
-        } else if (letter == "D+") {
-            grade = 1.33;
-        } else if (letter == "D") {
-            grade = 1.00;
-        } else if (letter == "D-") {
-            grade = 0.67;
-        } else if (letter == "F") {
-            grade = 0.00;
-        } else {
-            cout << "Please enter a valid letter grade: ";
-            cin >> letter;
-        }
+    switch(letter[1]){
+        case '+':
+        switch (letter[0]){
+            case 'A':
+            grade=4.33;
+            break;
+            case 'B':
+            grade=3.33;
+            break;
+            case 'C':
+            grade=2.33;
+            break;
+            case 'D':
+            grade=1.33;
+            break;
+        };
+        break;
+            
+        case ' ':
+        switch (letter[0]){
+            case 'A':
+            grade=4.00;
+            break;
+            case 'B':
+            grade=3.00;
+            break;
+            case 'C':
+            grade=2.00;
+            break;
+            case 'D':
+            grade=1.00;
+            break;
+            case 'F':
+            grade=0.00;
+            break;
+        };  
+        break;
         
-        cout << "How many credits is this class worth?: ";
+        case '-':
+        switch (letter[0]){
+            case 'A':
+            grade=3.67;
+            break;
+            case 'B':
+            grade=2.67;
+            break;
+            case 'C':
+            grade=1.67;
+            break;
+            case 'D':
+            grade=0.67;
+            break;
+        };
+        break;
+        };
+        
+        cout << "How many credits is this "<<i+1<<"th class worth?: ";
         cin >> credit;
         totalCredit += credit;    
         gradePoints = gradePoints + (grade * credit);
@@ -77,6 +102,6 @@ int main() {
     }
         
         gpa = gradePoints / totalCredit;  
-        cout << gpa << endl;
+        cout <<"Your Gpa is "<< gpa << endl;
 }
 
