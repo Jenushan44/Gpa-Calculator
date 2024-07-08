@@ -10,7 +10,8 @@ int main() {
     double gpa = 0;
     double gradePoints = 0;
     string letter = "";
-    
+    char again = 'y';
+
     cout << "Welcome to the gpa calculator" << endl;
     cout << "Letter Grade      Percentage      GPA" << endl;
     cout << "A+                90-100          4.33" << endl;
@@ -27,13 +28,18 @@ int main() {
     cout << "D-                50-52           0.67" << endl;
     cout << "F                 00-49           0.00" << endl;
     
+    while (again == 'Y' || again == 'y') {
+        totalCredit = 0;
+        gradePoints = 0;
+
     cout << "How many classes would you like to use to calculate your gpa?: ";
+    cin >> numClass;
+    
     if (numClass < 0) {
         cout << "Please enter a valid number of classes.";
-    } else {
-        cin >> numClass;
+        continue;
     }
-
+    
     for (int i = 0; i < numClass; i++) {
         cout << "Please enter the letter grade for this class: " << endl;
         cin >> letter;
@@ -74,9 +80,8 @@ int main() {
         totalCredit += credit;    
         gradePoints = gradePoints + (grade * credit);
     
-    }
-        
+        }
+    }        
         gpa = gradePoints / totalCredit;  
         cout << gpa << endl;
 }
-
