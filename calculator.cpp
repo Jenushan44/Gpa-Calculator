@@ -10,8 +10,15 @@ int main() {
     double gpa = 0;
     double gradePoints = 0;
     string letter = "";
+    string output = "";
     char again = 'y';
     bool validClass = false;
+    bool validCredit = false;
+    bool validLetter = false;
+
+
+    while (again == 'Y' || again == 'y') {
+
 
     cout << "Welcome to the gpa calculator" << endl;
     cout << "Letter Grade      Percentage      GPA" << endl;
@@ -29,29 +36,33 @@ int main() {
     cout << "D-                50-52           0.67" << endl;
     cout << "F                 00-49           0.00" << endl;
     
-    while (again == 'Y' || again == 'y') {
-
+    
     totalCredit = 0;
     gradePoints = 0;
+    validClass = false;
+    //validCredit = false;
+
 
     while (!validClass)  {
 
-    cout << "How many classes would you like to use to calculate your gpa?: ";
-    cin >> numClass;
+        cout << "How many classes would you like to use to calculate your gpa?: ";
+        cin >> numClass;
     
-
-    if (numClass > 0) {
-        validClass = true;
-    } else {
-        cout << "Please enter a valid number of classes.";
+        if (numClass > 0) {
+            validClass = true;
+        } else {
+            cout << "Please enter a valid number of classes.";
+        }
     }
-    
-    
-    }
-    
     for (int i = 0; i < numClass; i++) {
+        validLetter = false;
+        validCredit = false;
+        
+
+    while (!validLetter) {
         cout << "Please enter the letter grade for this class: " << endl;
         cin >> letter;
+    
 
         if (letter == "A+") {
             grade = 4.33;
@@ -79,21 +90,36 @@ int main() {
             grade = 0.67;
         } else if (letter == "F") {
             grade = 0.00;
-        } else {
-            cout << "Please enter a valid letter grade: ";
-            cin >> letter;
-        }
-        
-        cout << "How many credits is this class worth?: ";
-        cin >> credit;
-        totalCredit += credit;    
-        gradePoints = gradePoints + (grade * credit);
-    
-        }
-       
-        gpa = gradePoints / totalCredit;  
-        cout << gpa << endl;
+        } 
 
+        if (letter == "A+" || letter == "A" || letter == "A-" || letter == "B+" || letter == "B" || letter == "B-" || letter == "C+" || letter == "C" || letter == "C-" || letter == "D+" || letter == "D" || letter == "D-" || letter == "F") {
+            validLetter = true;
+        } else {
+            cout << "Error: Please enter a valid letter grade";
+        }
     }
         
+    while (!validCredit) {
+        cout << "How many credits is this class worth?: ";
+        cin >> credit;
+
+        if (credit > 0) {
+            validCredit = true;
+        } else {
+            cout << "Error: Please enter a valid number of credits.";
+        }
+        }
+        totalCredit += credit;    
+    gradePoints = gradePoints + (grade * credit);
+    }
+
+    
+    
+    gpa = gradePoints / totalCredit;  
+    cout << gpa << endl;
+
+    cout << "Would you like to use the calculator again?: ";
+    cin >> again;    
+    
+    }    
 }
